@@ -1,0 +1,27 @@
+version: "3"
+services: 
+    fhir:
+        image: "hapiproject/hapi:v5.4.1"
+        environment:
+            spring.datasource.url: "jdbc:postgresql://database:5432/hapi"
+            spring.datasource.username: hapi
+            spring.datasource.password: hapi
+            spring.datasource.driverClassName: org.postgresql.Driver
+            hapi.fhir.subscription.resthook_enabled: "true"
+            hapi.fhir.subscription.websocket_enabled: "true"
+            hapi.fhir.client_id_strategy: ANY
+        depends_on: 
+            - database
+        ports:
+            - 8080:8080
+    database:
+        image: postgres 
+        volumes:
+            - db-data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: hapi
+            POSTGRES_DB: hapi
+            POSTGRES_PASSWORD: hapi
+
+volumes:
+    db-data:

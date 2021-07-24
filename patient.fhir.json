@@ -1,0 +1,33 @@
+{
+    "resourceType": "Patient",
+    "name": [
+        {
+            "use": "official",
+            "given": ["John"],
+            "family": "hk"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "1998-02-20",
+    "telecom": [
+        {
+            "use": "mobile",
+            "system": "phone",
+            "value": "2348100000013"
+        },
+        {
+            "use": "home",
+            "system": "email",
+            "value": "hello@hk.com"
+        }
+    ],
+    "address": [
+        {
+            "line": ["5 ologolo street, jakande"],
+            "city": "Lekki",
+            "state": "Lagos",
+            "country": "Nigeria",
+            "postalCode": "100241"
+        }
+    ]
+}

@@ -1,8 +1,48 @@
+import React, {useEffect, useState} from 'react';
 import Head from 'next/head';
-import { LockClosedIcon } from '@heroicons/react/solid'
+import axios from 'axios';
+import { toast } from 'react-nextjs-toast';
 
 
 export default function Home() {
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [gender, setGender] = useState('');
+  const [birthDate, setBirthDate] = useState('');
+  const [telecom, setTelecom] = useState('');
+
+
+  const onPress = (e) => {
+    e.PreventDefault();
+    console.log("firstName" , firstName);
+    console.log("lastName" , lastName);
+    console.log("gender" , gender);
+    console.log("birthDate" , birthDate);
+    console.log("telecom" , telecom);
+
+    try {
+        const patientData = axios.post('http://localhost:8080/fhir/Patient', {
+                name: [firstName, lastName],
+                gender: gender,
+                birthDate: birthDate,
+                telecom: telecom,
+            })
+            .then(function (response) {
+                console.log(response.data);
+                
+                toast.notify(`Thanks, You've successfully register a new patient!`)
+            })
+            .catch(function (error) {
+                
+                toast.notify(`Error in submitting your data!`)
+            });
+    }catch(e) {
+        console.log(e)
+    }
+  };
+
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -28,7 +68,7 @@ export default function Home() {
             </p>
             
           </div>
-          <form className="mt-8 space-y-6 w-full" action="#" method="POST">
+          <div className="mt-8 space-y-6 w-full">
             <div className="mt-10 sm:mt-0">
               <div className="md:grid md:grid-cols-3 md:gap-6">
                 <div className="mt-5 md:mt-0 md:col-span-2">
@@ -36,45 +76,48 @@ export default function Home() {
                     <h3 className="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
                     <p className="mt-1 text-sm text-gray-600">Use a permanent address where you can receive mail.</p>
                   </div>
-                  <form action="http://localhost:8080/fhir/Patient" method="POST">
+                  <form onSubmit={onPress}>
                     <div className="shadow overflow-hidden sm:rounded-md">
                       <div className="px-4 py-5 bg-white sm:p-6">
                         <div className="grid grid-cols-6 gap-6">
                           <div className="col-span-6 sm:col-span-3">
-                            <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
                               First name
                             </label>
                             <input
                               type="text"
-                              name="first-name"
-                              id="first-name"
-                              autoComplete="given-name"
+                              name="firstNname"
+                              id="firstName"
+                              autoComplete="givenName"
+                              value={firstName} onChange={(e) => setFirstName(e.target.value)}
                               required
                               className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                             />
                           </div>
 
                           <div className="col-span-6 sm:col-span-3">
-                            <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
                               Last name
                             </label>
                             <input
                               type="text"
-                              name="last-name"
-                              id="last-name"
-                              autoComplete="family-name"
+                              name="lastName"
+                              id="lastName"
+                              autoComplete="familyName"
+                              value={lastName} onChange={(e) => setLastName(e.target.value)}
                               className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                             />
                           </div>
 
                           <div className="col-span-6 sm:col-span-3">
-                            <label htmlFor="country" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="gender" className="block text-sm font-medium text-gray-700">
                               Gender / Sex
                             </label>
                             <select
                               id="gender"
                               name="gender"
                               autoComplete="gender"
+                              value={gender} onChange={(e) => setGender(e.target.value)}
                               required
                               className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                             >
@@ -85,14 +128,15 @@ export default function Home() {
                           </div>
 
                           <div className="col-span-6">
-                            <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="birthDate" className="block text-sm font-medium text-gray-700">
                               Date of Birth
                             </label>
                             <input
                               type="date"
-                              name="date-of-birth"
-                              id="date-of-birth"
-                              autoComplete="date-of-birth"
+                              name="birthDate"
+                              id="birthDate"
+                              autoComplete="birthDate"
+                              value={birthDate} onChange={(e) => setBirthDate(e.target.value)}
                               className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                             />
                           </div>
@@ -103,10 +147,11 @@ export default function Home() {
                             </label>
                             <input
                               type="number"
-                              name="contact-number"
-                              id="contact-number"
-                              autoComplete="contact-number"
-                              minlength="10"
+                              name="telecom"
+                              id="telecom"
+                              autoComplete="telecom"
+                              minLength="10"
+                              value={telecom} onChange={(e) => setTelecom(e.target.value)}
                               className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                             />
                           </div>
@@ -127,7 +172,7 @@ export default function Home() {
               </div>
             </div>
 
-          </form>
+          </div>
         </div>
       </div>
   

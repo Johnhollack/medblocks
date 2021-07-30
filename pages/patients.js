@@ -1,31 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import Head from 'next/head';
+import axios from 'axios';
+
+// const patient = [
+//   {
+//     name: ['Jane', 'Cooper'],
+//     gender: 'male',
+//     birthDate: '24/02/1990',
+//     telecom: '1234810000',
+//   },
+// ]
 
 
-const patient = [
-  {
-    name: ['Jane', 'Cooper'],
-    gender: 'male',
-    birthDate: '24/02/1990',
-    telecom: '1234810000',
-  },
-]
-
-
-export default function Patients() {
+export default function PatientList() {
 
   const [patients, setPatients] = useState([ ]);
 
   useEffect(() => {
-    const patientsData = {
-        method: 'GET'
-    };
-    fetch('http://localhost:8080/fhir/Patient', patientsData)
-        .then(response => response.json())
-        .then(data => setPatients(data.id));
- 
-  }, []);
+    const fetchPatient = async () => {
 
+        try {
+
+          const patientsData = await axios.get('http://hapi.fhir.org/baseR4/Patient/')
+            .then((response) => {
+              console.log(response.data);
+              setPatients(response.data)
+            });     
+    
+        } catch (error) {
+            console.log("Error fetching patients" , error)
+        } 
+    }
+    fetchPatient();
+}, []);
+
+  console.log(patients.name);
 
 
   return (
@@ -89,11 +98,11 @@ export default function Patients() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {patient.map((patient) => (
-                    <tr key={patient.email}>
+                  { patients.map(patient => (
+                    <tr key={patient.id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="text-sm font-medium text-gray-900">{patient.name[0]} {patient.name[1]}</div>
+                          <div className="text-sm font-medium text-gray-900">{patient?.name[0].given} {patient?.name[0].family}</div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -104,14 +113,14 @@ export default function Patients() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">{patient.birthDate}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{patient.telecom}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{patient.telecom.value}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="#" className="text-green-600 hover:text-green-900">
                           Edit
                         </a>
                       </td>
                     </tr>
-                  ))}
+                  )) }
                 </tbody>
               </table>
             </div>

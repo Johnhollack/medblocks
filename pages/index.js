@@ -6,41 +6,53 @@ import { toast } from 'react-nextjs-toast';
 
 export default function Home() {
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [gender, setGender] = useState('');
-  const [birthDate, setBirthDate] = useState('');
-  const [telecom, setTelecom] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [gender, setGender] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [telecom, setTelecom] = useState("");
 
 
   const onPress = (e) => {
     e.PreventDefault();
+
+    try {
+        const patientData = axios.post('http://hapi.fhir.org/baseR4/Patient', {
+                "resourceType": "Patient",
+                "name": [{
+                    "given": [firstName], 
+                    "family": lastName
+                  }],
+                "gender": gender,
+                "birthDate": birthDate,
+                "telecom": [{
+                      "use": "mobile",
+                      "system": "phone",
+                      "value": telecom
+                  }],
+            })
+            .then(function (response) {
+                console.log(response.data);
+                toast.notify(`Thanks, You've successfully register a new patient!`)
+            })
+            .catch(function (error) {
+                console.log(error);
+                toast.notify(`Error in submitting your data!`)
+            });
+    }catch(e) {
+        //console.log(e)
+        alert(`error fetching data: ${e}`);
+    }
+
     console.log("firstName" , firstName);
     console.log("lastName" , lastName);
     console.log("gender" , gender);
     console.log("birthDate" , birthDate);
     console.log("telecom" , telecom);
-
-    try {
-        const patientData = axios.post('http://localhost:8080/fhir/Patient', {
-                name: [firstName, lastName],
-                gender: gender,
-                birthDate: birthDate,
-                telecom: telecom,
-            })
-            .then(function (response) {
-                console.log(response.data);
-                
-                toast.notify(`Thanks, You've successfully register a new patient!`)
-            })
-            .catch(function (error) {
-                
-                toast.notify(`Error in submitting your data!`)
-            });
-    }catch(e) {
-        console.log(e)
-    }
+    
   };
+
+
 
 
   return (
@@ -121,9 +133,10 @@ export default function Home() {
                               required
                               className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                             >
-                              <option>Male</option>
-                              <option>Female</option>
-                              <option>Others</option>
+                              <option>male</option>
+                              <option>female</option>
+                              <option>others</option>
+                              <option>unknown</option>
                             </select>
                           </div>
 
@@ -151,6 +164,7 @@ export default function Home() {
                               id="telecom"
                               autoComplete="telecom"
                               minLength="10"
+                              maxLength="10"
                               value={telecom} onChange={(e) => setTelecom(e.target.value)}
                               className="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                             />

@@ -14,21 +14,21 @@ export default function Home() {
 
 
   const onPress = (e) => {
-    e.PreventDefault();
+   // e.PreventDefault();
 
     try {
-        const patientData = axios.post('http://hapi.fhir.org/baseR4/Patient', {
+        const patientData = axios.post('http://localhost:8080/fhir/Patient/', {
                 "resourceType": "Patient",
                 "name": [{
-                    "given": [firstName], 
-                    "family": lastName
+                    "given": [`${firstName}`], 
+                    "family": `${lastName}`
                   }],
-                "gender": gender,
-                "birthDate": birthDate,
+                "gender": `${gender}`,
+                "birthDate": `${birthDate}`,
                 "telecom": [{
                       "use": "mobile",
                       "system": "phone",
-                      "value": telecom
+                      "value": `${telecom}`
                   }],
             })
             .then(function (response) {
@@ -43,12 +43,6 @@ export default function Home() {
         //console.log(e)
         alert(`error fetching data: ${e}`);
     }
-
-    console.log("firstName" , firstName);
-    console.log("lastName" , lastName);
-    console.log("gender" , gender);
-    console.log("birthDate" , birthDate);
-    console.log("telecom" , telecom);
     
   };
 

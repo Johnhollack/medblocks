@@ -2,14 +2,6 @@ import React, {useEffect, useState} from 'react';
 import Head from 'next/head';
 import axios from 'axios';
 
-// const patient = [
-//   {
-//     name: ['Jane', 'Cooper'],
-//     gender: 'male',
-//     birthDate: '24/02/1990',
-//     telecom: '1234810000',
-//   },
-// ]
 
 
 export default function PatientList() {
@@ -21,10 +13,10 @@ export default function PatientList() {
 
         try {
 
-          const patientsData = await axios.get('http://hapi.fhir.org/baseR4/Patient/')
+          const patientsData = await axios.get('http://localhost:8080/fhir/Patient/')
             .then((response) => {
-              console.log(response.data);
-              setPatients(response.data)
+              console.log(response.data.entry);
+              setPatients(response.data.entry)
             });     
     
         } catch (error) {
@@ -34,7 +26,12 @@ export default function PatientList() {
     fetchPatient();
 }, []);
 
-  console.log(patients.name);
+  // console.log("id", patients[0]?.resource?.id);
+  // console.log("birthDate", patients[0]?.resource?.birthDate);
+  // console.log("gender", patients[0]?.resource?.gender);
+  // console.log("lastName", patients[0]?.resource?.name[0]?.family);
+  // console.log("firstName", patients[0]?.resource?.name[0]?.given[0]);
+  // console.log("telecom", patients[0]?.resource?.telecom[0]?.value);
 
 
   return (
@@ -99,21 +96,21 @@ export default function PatientList() {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   { patients.map(patient => (
-                    <tr key={patient.id}>
+                    <tr key={patient?.resource?.id}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="text-sm font-medium text-gray-900">{patient?.name[0].given} {patient?.name[0].family}</div>
+                          <div className="text-sm font-medium text-gray-900">{patient?.resource?.name[0]?.given[0]} {patient?.resource?.name[0]?.family}</div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                          {patient.gender}
+                          {patient?.resource?.gender}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{patient.birthDate}</div>
+                        <div className="text-sm text-gray-900">{patient?.resource?.birthDate}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{patient.telecom.value}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{patient?.resource?.telecom[0]?.value}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="#" className="text-green-600 hover:text-green-900">
                           Edit

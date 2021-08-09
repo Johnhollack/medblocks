@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Head from 'next/head';
 import axios from 'axios';
+import Link from "next/link";
 
 
 
@@ -13,7 +14,11 @@ export default function PatientList() {
 
         try {
 
-          const patientsData = await axios.get('http://localhost:8080/fhir/Patient/')
+          const patientsData = await axios.get('http://localhost:8080/fhir/Patient/',{
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          })
             .then((response) => {
               console.log(response.data.entry);
               setPatients(response.data.entry)
@@ -26,37 +31,47 @@ export default function PatientList() {
     fetchPatient();
 }, []);
 
-  // console.log("id", patients[0]?.resource?.id);
-  // console.log("birthDate", patients[0]?.resource?.birthDate);
-  // console.log("gender", patients[0]?.resource?.gender);
-  // console.log("lastName", patients[0]?.resource?.name[0]?.family);
-  // console.log("firstName", patients[0]?.resource?.name[0]?.given[0]);
-  // console.log("telecom", patients[0]?.resource?.telecom[0]?.value);
-
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col items-center justify-center h-screen py-2">
       <Head>
         <title>Medblocks - Patients</title>
         <meta name="Medblocks" content="HealthCare is a healthcare management app for indians." />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/medblocks.png" />
       </Head>
 
-      <div className="flex flex-col">
+      
+      <div className="flex w-screen h-auto py-5 justify-between px-10 md:px-20 items-center overflow-hidden">
+        <Link href='/'>
+            <div className="flex cursor-pointer justify-center items-center">
+                <img src="/medblocks.png" alt="Medblocks-Logo" className="mx-auto h-12 w-auto hover:cursor-pointer"/>
+            </div>
+        </Link>
 
-        <div className="mb-10">
-          <img
-            className="mx-auto h-12 w-auto"
-            src="/medblocks.png"
-            alt="Medblocks"
-          />
-          <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">List of patients</h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Or{' '}
-            <a href="/" className="font-medium text-green-600 hover:text-green-500">
-             Register a patient.
-            </a>
-          </p>            
+        <div className="flex justify-evenly md:justify-evenly items-center w-2/3 lg:w-1/3">
+            <Link href='/'>
+                <p className="cursor-pointer hover:text-green-600 hover:bg-gray-100 rounded-md px-3 py-1 text-black font-semibold font-sans rounded ">Home</p>
+            </Link>
+            <Link href='/register'>
+                <p className="cursor-pointer hover:text-green-600 hover:bg-gray-100 rounded-md px-3 py-1 text-black font-semibold font-sans rounded">Register</p>
+            </Link>
+            <Link href='/list'>
+                <p className="cursor-pointer hover:text-black hover:bg-gray-100 rounded-md px-3 py-1 text-green-600 font-semibold font-sans rounded">List</p>
+            </Link>
+            <Link href='/tree'>
+                <p className="cursor-pointer hover:text-green-600 hover:bg-gray-100 rounded-md px-3 py-1 text-black font-semibold font-sans rounded ">Tree</p>
+            </Link>
+            <Link href='https://github.com/johnhollack/medblocks'>
+              <p className="cursor-pointer hover:text-black hover:bg-gray-100 bg-gray-900 rounded-md px-3 py-1 text-white ml-5 font-semibold font-sans rounded">Github</p>
+            </Link>
+        </div>
+
+      </div>
+
+      <div className="flex flex-col w-full h-full px-20">
+
+        <div className="mb-6 ">
+          <h2 className="mt-16 text-2xl text-center font-semibold text-gray-900">List of patients</h2>       
         </div>
 
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -67,25 +82,25 @@ export default function PatientList() {
                   <tr>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider"
                     >
                       Gender
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider"
                     >
                       Date of Birth
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider"
                     >
                       Contact Number
                     </th>
@@ -110,7 +125,7 @@ export default function PatientList() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">{patient?.resource?.birthDate}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{patient?.resource?.telecom[0]?.value}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{patient?.resource?.telecom[0]?.value}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="#" className="text-green-600 hover:text-green-900">
                           Edit

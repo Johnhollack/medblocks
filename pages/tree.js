@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from "next/link";
+import Test from '../components/Test';
 
 
 
@@ -33,7 +34,7 @@ const tree = () => {
             setTreeID(result.tree.id);
             
             var formatted = JSON.stringify(result, null, 2);
-               document.getElementById('result').value = formatted;
+               //document.getElementById('result').value = formatted;
             }
             
             fr.readAsText(files.item(0));
@@ -80,18 +81,18 @@ const tree = () => {
             </div>
 
             <div className="h-full w-full flex-col items-center justify-center bg-white">
-                <div className="mb-6 ">
-                    <h2 className="mt-16 text-2xl text-center font-semibold text-gray-900">List of trees</h2>       
+                <div className=" ">
+                    <h2 className="mt-10 text-2xl text-center font-semibold text-gray-900">List of trees</h2>       
                 </div>
 
-                <div className="flex flex-col justify-center w-full items-center my-10">
+                <div className="flex flex-col justify-start items-start h-full w-full items-center mb-10 ">
                     <div className="w-full">
-                        <label className="block font-medium text-gray-700">Tree data</label>
+                        <label className="block font-medium text-gray-700 bg-white">Tree data</label>
                         <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                             <div className="space-y-1 text-center bg-white">
                               
                                 <svg 
-                                    className="mx-auto h-10 w-10"
+                                    className="mx-auto h-8 w-8"
                                     width="50" height="50" viewBox="0 0 50 50" fill="none">
                                     <path d="M26.7146 31.5042C25.6375 31.5042 25.0146 32.5271 25.0146 33.8917C25.0146 35.2687 25.6625 36.2375 26.7229 36.2375C27.8 36.2375 28.4146 35.2167 28.4146 33.85C28.4146 32.5917 27.8083 31.5042 26.7146 31.5042V31.5042Z" fill="#059669"/>
                                     <path d="M29.1667 4.16667H12.5C11.3949 4.16667 10.3351 4.60565 9.55372 5.38706C8.77232 6.16846 8.33334 7.22827 8.33334 8.33333V41.6667C8.33334 42.7717 8.77232 43.8315 9.55372 44.6129C10.3351 45.3944 11.3949 45.8333 12.5 45.8333H37.5C38.6051 45.8333 39.6649 45.3944 40.4463 44.6129C41.2277 43.8315 41.6667 42.7717 41.6667 41.6667V16.6667L29.1667 4.16667ZM16.7125 34.8C16.7125 36.8021 15.7521 37.5 14.2125 37.5C13.8458 37.5 13.3667 37.4396 13.0521 37.3333L13.2313 36.0521C13.4479 36.125 13.7292 36.1771 14.0458 36.1771C14.7104 36.1771 15.1292 35.875 15.1292 34.7813V30.3604H16.7146V34.8H16.7125ZM19.7521 37.4896C18.95 37.4896 18.1563 37.2813 17.7625 37.0625L18.0854 35.7479C18.5104 35.9667 19.1708 36.1875 19.8479 36.1875C20.5771 36.1875 20.9604 35.8833 20.9604 35.4271C20.9604 34.9875 20.6292 34.7375 19.7854 34.4354C18.6146 34.0292 17.8542 33.3813 17.8542 32.3604C17.8542 31.1604 18.8563 30.2417 20.5146 30.2417C21.3063 30.2417 21.8875 30.4083 22.3083 30.5979L21.95 31.8792C21.6688 31.7438 21.1688 31.5458 20.4813 31.5458C19.7938 31.5458 19.4583 31.8583 19.4583 32.2229C19.4583 32.6708 19.8542 32.8708 20.7646 33.2146C22.0063 33.6729 22.5896 34.3188 22.5896 35.3104C22.5917 36.4896 21.6813 37.4896 19.7521 37.4896ZM26.6396 37.5C24.5542 37.5 23.3354 35.9271 23.3354 33.925C23.3354 31.8167 24.6813 30.2417 26.7563 30.2417C28.9125 30.2417 30.0917 31.8583 30.0917 33.7979C30.0896 36.1042 28.6937 37.5 26.6396 37.5V37.5ZM36.9458 37.3854H35.275L33.7729 34.6729C33.3236 33.8684 32.9168 33.0409 32.5542 32.1938L32.5208 32.2042C32.5646 33.1313 32.5854 34.1229 32.5854 35.2708V37.3875H31.125V30.3604H32.9812L34.4417 32.9354C34.8583 33.6729 35.275 34.55 35.5917 35.3417H35.6208C35.5167 34.4146 35.4854 33.4667 35.4854 32.4125V30.3604H36.9479V37.3854H36.9458ZM29.1667 18.75H27.0833V8.33333L37.5 18.75H29.1667Z" fill="#059669"/>
@@ -113,12 +114,12 @@ const tree = () => {
                                             required
                                         />
                                     </label>
-                                    <p className="pl-1">or drag and drop</p>
+                                    <p className="pl-3">  {treeFormData}</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="w-full flex justify-end">
+                        <div className="flex justify-end">
                             <button type="submit" id="import"
                                 className="mt-5 ml-auto justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                             >
@@ -126,107 +127,17 @@ const tree = () => {
                             </button>
                         </div>
                     </div>
+
+                    <div className="w-full flex flex-col justify-center">
+                        {/* <textarea id="result" className="">
+            
+                        </textarea>    */}
+                        {treeJson &&
+                            <Test obj={treeJson}/>
+                        }
+                   </div>
                 </div>
-
-                <div className="w-full flex flex-col justify-center ">
-                    {/* <textarea id="result" className="">
-        
-                    </textarea>    */}
-                    <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
-                        <tr>
-                            <th
-                            scope="col"
-                            className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider"
-                            >
-                            Tree ID
-                            </th>
-                            <th
-                            scope="col"
-                            className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider"
-                            >
-                            Parent ID
-                            </th>
-                            <th
-                            scope="col"
-                            className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider"
-                            >
-                            Children ID
-                            </th>
-                            <th
-                            scope="col"
-                            className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider"
-                            >
-                            GrandChildren ID
-                            </th>
-                            <th scope="col" className="relative px-6 py-3">
-                            <span className="sr-only">Edit</span>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody className="bg-white divide-y divide-gray-200">
-                        { treeJson.map(treeJson => (
-                            <tr key={treeJson?.id} className="table-auto w-24">
-                                <td className="px-6 py-4 whitespace-nowrap w-24">
-                                    <div className="flex items-center">
-                                        <div className="text-sm font-medium text-gray-900">{treeID}</div>
-                                    </div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap w-24">
-                                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    {treeJson?.id}
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap w-24">
-                                    {treeJson?.children && 
-                                        <div className="flex flex-col justify-center items-center">
-                                            <div className="text-sm text-gray-900">{treeJson?.children[0]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[1]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[2]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[3]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[4]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[5]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[6]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[7]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[8]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[9]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[10]?.id}</div>
-                                        </div>
-                                    }
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap w-24 text-sm text-gray-500">
-                                    {treeJson?.children?.children && 
-                                        <div className="flex flex-col justify-center items-center">
-                                            <div className="text-sm text-gray-900">{treeJson?.children[2]?.children[0]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[2]?.children[1]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[2]?.children[2]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[2]?.children[3]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[2]?.children[4]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[2]?.children[5]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[2]?.children[6]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[2]?.children[7]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[2]?.children[8]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[2]?.children[9]?.id}</div>
-                                            <div className="text-sm text-gray-900">{treeJson?.children[2]?.children[10]?.id}</div>
-                                        </div>
-                                    }
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap w-24 text-right text-sm font-medium">
-                                <a href="#" className="text-green-600 hover:text-green-900">
-                                    Copy
-                                </a>
-                                </td>
-                            </tr>
-                        ))}  
-                        </tbody>
-                    </table>
-                          
-
-                </div>
-
-                
-
-            </div>    
+          </div>    
   
         </div>    
     )

@@ -28,7 +28,7 @@
   }
 }
 
-$folderColor: #2185d0;
+$folderColor: #0808;
 .folder {
   color: $folderColor;
 }
@@ -49,6 +49,8 @@ $folderColor: #2185d0;
 .children {
   overflow: hidden;
   transition: height 0.2s ease-in;
+  margin-left: 21px;
+  margin-top: 5px;
 
   &.collapsed {
     height: 0;

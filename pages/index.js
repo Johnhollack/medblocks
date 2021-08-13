@@ -49,19 +49,22 @@ export default function Home() {
 
           <div className="flex flex-row w-full mt-12">
             <p className="mr-5">
-              <a href="/register" className="hover:bg-gray-700 font-medium bg-gray-900 rounded-md px-5 py-3 text-white">
+              <a href="/register" 
+                className="hover:bg-gray-700 font-medium bg-gray-900 rounded-md px-5 py-3 text-white">
                 Register a patient
               </a>
             </p>
 
             <p className="mr-5">
-              <a href="/list" className="hover:bg-green-500 font-medium bg-green-600 rounded-md px-5 py-3 text-white">
+              <a href="/list" 
+                className="hover:bg-green-500 font-medium bg-green-600 rounded-md px-5 py-3 text-white">
                 List of patients
               </a>
             </p>
 
             <p className="">
-              <a href="/tree" className="hover:text-green-500 font-medium border border-green-600 border-2 rounded-md px-5 py-3 text-black">
+              <a href="/tree" 
+                className="hover:text-green-500 font-medium border border-green-600 border-2 rounded-md px-5 py-3 text-black">
                 List of trees
               </a>
             </p>

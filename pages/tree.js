@@ -11,7 +11,7 @@ const tree = () => {
     const [treeJson, setTreeJson] = useState([ ]);
     const [treeID, setTreeID] = useState("");
 
-    if (typeof window === 'object') {
+    if (treeFormData && typeof window === 'object') {
 
         //window.onload = function(){ 
 

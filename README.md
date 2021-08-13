@@ -54,10 +54,6 @@ The 3 CTA buttons are navigators to the differents pages/routes on this applicat
    
     ![alt text](https://github.com/Johnhollack/medblocks/blob/main/public/medblocks-tree.PNG?raw=true)
 
-    Note: on the /tree page, at first load if it returns an error, don't fuse or panic, just refresh the page and the error will be clear.
-   
-    ![alt text](https://github.com/Johnhollack/medblocks/blob/main/public/medblocks-tree-error.PNG?raw=true)
-
     To upload the json file, click the upload a json file button to pick your local file and then use the import button on the right side to import the json file, then you will see your data structure shown below which is collapsible to see the children or files in each folder.
    
     ![alt text](https://github.com/Johnhollack/medblocks/blob/main/public/medblocks-tree-upload.PNG?raw=true)

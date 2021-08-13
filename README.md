@@ -35,7 +35,7 @@ Open your browser and run your localhost to see the application running at;
     http://localhost:3000
 
 
-You will see the home page as shown below;
+You will see the home page as shown below: /
 
     ![alt text](https://github.com/Johnhollack/medblocks/blob/main/public/medblocks-home.PNG?raw=true)
 
@@ -44,7 +44,7 @@ The 3 CTA buttons are navigators to the differents pages/routes on this applicat
 
 - Use the register CTA button to register a new patient to the fhir database, this will redirect you to this route: /register
 
-    ![alt text](https://github.com/Johnhollack/medblocks/blob/main/public/medblocks-home.PNG?raw=true)
+    ![alt text](https://github.com/Johnhollack/medblocks/blob/main/public/medblocks-register.PNG?raw=true)
 
 - Use the list CTA button to check the list of all registered patients in the database, this will redirect you to this route: /list
   

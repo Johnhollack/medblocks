@@ -1,5 +1,13 @@
 version: "3"
 services: 
+    medblocks_healthcare:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        ports: 
+            - 3000:3000
+        volumes: 
+            - .:/medblocks_healthcare
     fhir:
         image: "hapiproject/hapi:v5.4.1"
         environment:

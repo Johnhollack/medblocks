@@ -14,7 +14,7 @@ export default function PatientList() {
 
         try {
 
-          const patientsData = await axios.get('http://localhost:8080/fhir/Patient/',{
+          const patientsData = await axios.get('http://fhir:8080/fhir/Patient/',{
             headers: {
               'Cache-Control': 'no-cache'
             }

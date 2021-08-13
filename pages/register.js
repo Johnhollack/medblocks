@@ -17,7 +17,7 @@ export default function Register() {
   const onPress = (e) => {
 
     try {
-        const patientData = axios.post('http://localhost:8080/fhir/Patient/', {
+        const patientData = axios.post('http://fhir:8080/fhir/Patient/', {
                 "resourceType": "Patient",
                 "name": [{
                     "given": [`${firstName}`], 

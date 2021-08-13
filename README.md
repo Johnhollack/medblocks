@@ -2,7 +2,7 @@ Welcome to MEBLOCKS-HEALTHCARE
 
 MEDBLOCK-HEALTHCARE is a simple healthcare service web-app with the features such as patient registration, listing registered patients, and check json response data from fhir server in tree structure.
 
-This application is a pet project and open-sourced. The docker image is available for public view at;
+This application is a pet project for medblocks.org. The docker image is available for public view at;
 
     https://hub.docker.com/r/johnolami/medblocks-healthcare/
 

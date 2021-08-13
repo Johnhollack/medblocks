@@ -37,30 +37,30 @@ Open your browser and run your localhost to see the application running at;
 
 You will see the home page as shown below;
 
-    https://raw.githubusercontent.com/Johnhollack/medblocks/blob/main/public/medblocks-home.PNG
+    ![alt text](https://github.com/Johnhollack/medblocks/blob/main/public/medblocks-home.PNG?raw=true)
 
 
 The 3 CTA buttons are navigators to the differents pages/routes on this application. 
 
 - Use the register CTA button to register a new patient to the fhir database, this will redirect you to this route: /register
 
-    https://raw.githubusercontent.com/Johnhollack/medblocks/blob/main/public/medblocks-register.PNG
+    ![alt text](https://github.com/Johnhollack/medblocks/blob/main/public/medblocks-register.PNG?raw=true)
 
 - Use the list CTA button to check the list of all registered patients in the database, this will redirect you to this route: /list
   
-    https://raw.githubusercontent.com/Johnhollack/medblocks/blob/main/public/medblocks-list.PNG
+    ![alt text](https://github.com/Johnhollack/medblocks/blob/main/public/medblocks-list.PNG?raw=true)
 
 - Use the tree CTA button to upload a json response file from fhir server to view the file in tree structure, this is for the purpose of visualization and comprehension of your json data.
    
-    https://raw.githubusercontent.com/Johnhollack/medblocks/blob/main/public/medblocks-tree.PNG
+    ![alt text](https://github.com/Johnhollack/medblocks/blob/main/public/medblocks-tree.PNG?raw=true)
 
     Note: on the /tree page, at first load if it returns an error, don't fuse or panic, just refresh the page and the error will be clear.
    
-    https://raw.githubusercontent.com/Johnhollack/medblocks/blob/main/public/medblocks-tree-error.PNG
+    ![alt text](https://github.com/Johnhollack/medblocks/blob/main/public/medblocks-tree-error.PNG?raw=true)
 
     To upload the json file, click the upload a json file button to pick your local file and then use the import button on the right side to import the json file, then you will see your data structure shown below which is collapsible to see the children or files in each folder.
    
-    https://raw.githubusercontent.com/Johnhollack/medblocks/blob/main/public/medblocks-tree-upload.PNG
+    ![alt text](https://github.com/Johnhollack/medblocks/blob/main/public/medblocks-tree-upload.PNG?raw=true)
 
 - Use the Github CTA button to go to the source code on my github profile;
 

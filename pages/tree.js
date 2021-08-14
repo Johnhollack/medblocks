@@ -1,48 +1,44 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from "next/link";
-import Test from '../components/Test';
+import Tree from '../components/Tree';
 
 
 
 const tree = () => {
 
     const [treeFormData, setTreeFormData] = useState("");
-    const [treeJson, setTreeJson] = useState([ ]);
+    const [treeJson, setTreeJson] = useState([]);
     const [treeID, setTreeID] = useState("");
+    
 
     if (treeFormData && typeof window === 'object') {
 
-        //window.onload = function(){ 
-
-            document.getElementById('import').onclick = function() {
-            var files = document.getElementById('selectFiles').files;
-            console.log(files);
-            if (files.length <= 0) {
-            return false;
-            }
-            
-            var fr = new FileReader();
-            
-            fr.onload = function(e) { 
-            console.log(e);
-    
-            var result = JSON.parse(e.target.result);
-    
-            //console.log("result: ", result.tree.children);
-            setTreeJson(result.tree.children);
-            setTreeID(result.tree.id);
-            
-            var formatted = JSON.stringify(result, null, 2);
-               //document.getElementById('result').value = formatted;
-            }
-            
-            fr.readAsText(files.item(0));
-            };
+        document.getElementById('import').onclick = function() {
+        var files = document.getElementById('selectFiles').files;
+        console.log(files);
+        if (files.length <= 0) {
+        return false;
+        }
         
-        //};
+        var fr = new FileReader();
+        
+        fr.onload = function(e) { 
+        console.log(e);
 
+        var result = JSON.parse(e.target.result);
+
+        setTreeJson(result.tree.children);
+        setTreeID(result.tree.id);
+        
+        var formatted = JSON.stringify(result, null, 2);
+            //document.getElementById('result').value = formatted;
+        }
+        
+        fr.readAsText(files.item(0));
+        };
     }; 
+
 
 
     return (
@@ -129,12 +125,11 @@ const tree = () => {
                     </div>
 
                     <div className="w-full flex flex-col justify-center">
-                        {/* <textarea id="result" className="">
-            
-                        </textarea>    */}
+
                         {treeJson &&
-                            <Test obj={treeJson}/>
+                            <Tree obj={treeJson} treeID={treeID}/>
                         }
+
                    </div>
                 </div>
           </div>    

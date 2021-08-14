@@ -14,7 +14,7 @@ To run and use this app, follow the processes as discussed below;
 
 To run with Docker Compose or Docker Desktop, you need to first pull the container image using this command as shown below;
 
-    docker pull johnolami/medblocks-healthcare:latest
+    docker pull johnolami/medblocks-healthcare:v1.0.2
 
 Once you've successfully pull this to your Docker desktop, cd to the project directory and run start your docker containers using this command as shown below;
 

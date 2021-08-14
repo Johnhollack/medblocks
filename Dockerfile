@@ -1,14 +1,14 @@
 FROM node:14
 
-RUN mkdir /medblocks_healthcare
+RUN mkdir /healthcare
 
-WORKDIR /medblocks_healthcare
+WORKDIR /healthcare
 
-COPY ./package.json /medblocks_healthcare/
+COPY ./package.json /healthcare/
 
 RUN yarn install
 
-COPY . /medblocks_healthcare/
+COPY . /healthcare/
 
 RUN yarn build
 
